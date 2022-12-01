@@ -33,6 +33,7 @@ stages:
     steps:
     - bash: echo $(environment)DeployJob
 - stage: PRODDeploy
+  environments:
     variable: Dev
   dependsOn: Build
   dependsOn:
