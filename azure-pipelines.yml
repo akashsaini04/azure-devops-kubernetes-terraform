@@ -18,11 +18,9 @@ stages:
   - job: BuildJob
     steps:
      - bash: echo "Do the Build"
+
 - stage: DevDeploy
   jobs:
-  - job: BuildJob
-    steps:
-     - bash: echo "Start Dev Deploy"
   - deployment: DevDeployJob
     environment: Dev
     strategy:
@@ -33,16 +31,13 @@ stages:
 
 - stage: QADeploy
   jobs:
-  - job: BuildJob
-    steps:
-     - bash: echo "Start Dev Deploy"
-  - deployment: DevDeployJob
+  - deployment: QADeployJob
     environment: QA
     strategy:
       runOnce:
         deploy:
           steps:
-          - script: echo deploy to Dev
+          - script: echo deploy to QA
 
 # steps:
 # - script: echo Running on $(operatingSystem)
